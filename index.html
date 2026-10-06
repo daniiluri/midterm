@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fan-made landing page for Brawl Stars: game modes, how to start and sign-up.">
+    <title>Brawl Stars | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md sticky-toso p site-nav">
+        <div class="container">
+            <a class="navbar-brand brand" href="index.html">
+                <i class="bi bi-star-fill"></i> Brawl Stars
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-md-2">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#modes">Game Modes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brawlers.html">Brawlers</a></li>
+                    <li class="nav-item"><a class="btn btn-brawl btn-sm my-2 my-md-0" href="index.html#join">Join</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <p class="eyebrow">Free mobile brawler by Supercell</p>
+                    <h1 class="hero-title">Brawl Stars</h1>
+                    <p class="lead">Fast 3v3 and battle royale fights that last about three minutes.</p>
+                    <p class="d-md-none">Pick a brawler and team up with friends.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="#join" class="btn btn-brawl btn-lg">Start brawling</a>
+                        <a href="brawlers.html" class="btn btn-brawl btn-brawl-blue btn-lg">Meet the brawlers</a>
+                    </div>
+                    <ul class="hero-stats">
+                        <li><i class="bi bi-stopwatch"></i> ~3 min matches</li>
+                        <li><i class="bi bi-people-fill"></i> 3v3 &amp; solo</li>
+                        <li><i class="bi bi-tag-fill"></i> Free to play</li>
+                    </ul>
+                </div>
+                <div class="hero-emblem">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <div class="panel">
+                            <h3 class="h5">Quick facts</h3>
+                            <dl class="facts">
+                                <dt>Developer</dt>
+                                <dd>Supercell</dd>
+                                <dt>Released</dt>
+                                <dd>December 2018</dd>
+                                <dt>Platforms</dt>
+                                <dd>iOS, Android</dd>
+                                <dt>Price</dt>
+                                <dd>Free to play</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <p class="eyebrow">About the game</p>
+                        <h2 class="section-title">Short matches, big plays</h2>
+                        <p>Brawl Stars is a mobile game where you control a brawler in short online matches against other players. Every brawler has a main attack and a Super.</p>
+                        <p class="mb-0">Play with friends or solo, unlock new brawlers and climb the trophy road.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game modes -->
+        <section class="section section-alt" id="modes">
+            <div class="container">
+                <p class="eyebrow text-center">Pick your fight</p>
+                <h2 class="section-title text-center">Game Modes</h2>
+
+                <div class="modes-grid">
+                    <article class="mode-card">
+                        <i class="bi bi-gem mode-icon"></i>
+                        <span class="mode-tag">3v3</span>
+                        <h3 class="mode-title">Gem Grab</h3>
+                        <p class="mode-text">Collect gems from the mine in the middle of the map. The first team to hold 10 gems until the countdown ends wins.</p>
+                    </article>
+
+                    <article class="mode-card">
+                        <i class="bi bi-fire mode-icon"></i>
+                        <span class="mode-tag">Solo / Duo</span>
+                        <h3 class="mode-title">Showdown</h3>
+                        <p class="mode-text">Battle royale where 10 players, solo or in pairs, fight to be the last one standing in a shrinking arena.</p>
+                    </article>
+
+                    <article class="mode-card">
+                        <i class="bi bi-dribbble mode-icon"></i>
+                        <span class="mode-tag">3v3</span>
+                        <h3 class="mode-title">Brawl Ball</h3>
+                        <p class="mode-text">Two teams compete to score two goals by carrying or shooting the ball into the opponent's net.</p>
+                    </article>
+
+                    <article class="mode-card">
+                        <i class="bi bi-safe mode-icon"></i>
+                        <span class="mode-tag">3v3</span>
+                        <h3 class="mode-title">Heist</h3>
+                        <p class="mode-text">A fast-paced mode built around base defense and destruction: break the enemy safe before they break yours.</p>
+                    </article>
+
+                    <article class="mode-card">
+                        <i class="bi bi-star-fill mode-icon"></i>
+                        <span class="mode-tag">3v3</span>
+                        <h3 class="mode-title">Bounty</h3>
+                        <p class="mode-text">Defeat enemies to collect their stars. The team with the most stars when time runs out wins.</p>
+                    </article>
+
+                    <article class="mode-card">
+                        <i class="bi bi-crosshair mode-icon"></i>
+                        <span class="mode-tag">3v3</span>
+                        <h3 class="mode-title">Knockout</h3>
+                        <p class="mode-text">No respawns. Knock out the whole enemy team to win the round, and win two rounds to take the match.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to start -->
+        <section class="section" id="start">
+            <div class="container">
+                <p class="eyebrow text-center">Three steps</p>
+                <h2 class="section-title text-center">How to start</h2>
+                <ol class="steps">
+                    <li class="step">
+                        <i class="bi bi-download"></i>
+                        <h3 class="h5">Download</h3>
+                        <p>Get the game for free from the App Store or Google Play.</p>
+                    </li>
+                    <li class="step">
+                        <i class="bi bi-person-arms-up"></i>
+                        <h3 class="h5">Pick a brawler</h3>
+                        <p>Start with Shelly and unlock more brawlers as you play.</p>
+                    </li>
+                    <li class="step">
+                        <i class="bi bi-trophy-fill"></i>
+                        <h3 class="h5">Win trophies</h3>
+                        <p>Team up with friends and win matches together.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Join form -->
+        <section class="section section-alt" id="join">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-5">
+                        <p class="eyebrow">Join the club</p>
+                        <h2 class="section-title">Get event news</h2>
+                        <p>Sign up to hear about new brawlers, special events and community tournaments.</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <form class="panel">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="player" class="form-label">Player name</label>
+                                    <input type="text" class="form-control" id="player" name="player" minlength="3" maxlength="15" autocomplete="nickname" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="mode" class="form-label">Favorite mode</label>
+                                    <select class="form-select" id="mode" name="mode" required>
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option>Gem Grab</option>
+                                        <option>Showdown</option>
+                                        <option>Brawl Ball</option>
+                                        <option>Heist</option>
+                                        <option>Bounty</option>
+                                        <option>Knockout</option>
+                                    </select>
+                                </div>
+                                <fieldset class="col-sm-6">
+                                    <legend class="form-label fs-6">I usually play</legend>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="style" id="solo" value="solo" checked>
+                                        <label class="form-check-label" for="solo">Solo</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="style" id="team" value="team">
+                                        <label class="form-check-label" for="team">With friends</label>
+                                    </div>
+                                </fieldset>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agree" name="agree" required>
+                                        <label class="form-check-label" for="agree">I agree to receive emails</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-brawl btn-lg w-100">Sign me up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <h3 class="mb-0">This is the end of the page</h3    >
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
