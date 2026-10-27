@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a custom Brawl Stars brawler with a live card preview and balanced skills.">
+    <title>Brawl Stars | Brawler Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="creator.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md sticky-top site-nav" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand brand" href="index.html"><i class="bi bi-star-fill" aria-hidden="true"></i> Brawl Stars</a>
+            <button class="navbar-toggler" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brawlers.html">Brawlers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="players.html">Top Players</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="creator.html">Creator</a></li>
+                    <li class="nav-item"><a class="btn btn-brawl btn-sm my-2 my-md-0" href="index.html#join">Join</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero hero-small">
+            <div class="container">
+                <p class="eyebrow">Build your own brawler</p>
+                <h1 class="hero-title">Brawler Creator</h1>
+                <p class="lead mb-0">Pick a name, choose your class, and distribute exactly 20 skill points.</p>
+            </div>
+        </header>
+
+        <section class="section" aria-label="Create a brawler">
+            <div class="container">
+                <div class="row g-4 align-items-start">
+                    <div class="col-lg-7">
+                        <form class="panel" id="brawler-form">
+                            <h2 class="section-title">Your brawler</h2>
+                            <p>All fields are required. Each skill must be a whole number from 1 to 10.</p>
+                            <p class="creator-error-summary" id="error-summary" role="alert" hidden></p>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="brawler-name">Brawler name</label>
+                                <input class="form-control" id="brawler-name" name="name" type="text" required minlength="3" maxlength="20" autocomplete="off" aria-describedby="name-help brawler-name-error">
+                                <p class="form-text" id="name-help">Use 3–20 characters. Existing brawler names and names you already created cannot be reused.</p>
+                                <p class="creator-field-error" id="brawler-name-error" aria-live="polite"></p>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-8">
+                                    <label class="form-label" for="brawler-class">Class</label>
+                                    <select class="form-select" id="brawler-class" name="classId" required aria-describedby="class-help brawler-class-error">
+                                        <option value="damage">Damage Dealer</option>
+                                        <option value="tank">Tank</option>
+                                        <option value="support">Support</option>
+                                    </select>
+                                    <p class="form-text" id="class-help">Damage Dealer needs Attack ≥ 6; Tank needs Defense ≥ 6; Support needs Healing ≥ 6.</p>
+                                    <p class="creator-field-error" id="brawler-class-error" aria-live="polite"></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label" for="brawler-color">Card color</label>
+                                    <input class="form-control form-control-color" id="brawler-color" name="color" type="color" value="#1e8fff" required aria-describedby="brawler-color-error">
+                                    <p class="creator-field-error" id="brawler-color-error" aria-live="polite"></p>
+                                </div>
+                            </div>
+
+                            <fieldset>
+                                <legend class="h5">Skill points</legend>
+                                <p class="small text-body-secondary" id="skills-help">Use exactly 20 points in total. Attack + Healing cannot exceed 12.</p>
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="attack">Attack</label>
+                                        <input class="form-control" id="attack" name="attack" data-skill type="number" required min="1" max="10" step="1" value="6" aria-describedby="skills-help attack-error">
+                                        <p class="creator-field-error" id="attack-error" aria-live="polite"></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="defense">Defense</label>
+                                        <input class="form-control" id="defense" name="defense" data-skill type="number" required min="1" max="10" step="1" value="5" aria-describedby="skills-help defense-error">
+                                        <p class="creator-field-error" id="defense-error" aria-live="polite"></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="speed">Speed</label>
+                                        <input class="form-control" id="speed" name="speed" data-skill type="number" required min="1" max="10" step="1" value="5" aria-describedby="skills-help speed-error">
+                                        <p class="creator-field-error" id="speed-error" aria-live="polite"></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="healing">Healing</label>
+                                        <input class="form-control" id="healing" name="healing" data-skill type="number" required min="1" max="10" step="1" value="4" aria-describedby="skills-help healing-error">
+                                        <p class="creator-field-error" id="healing-error" aria-live="polite"></p>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <p class="fw-bold mt-3" id="points-counter" role="status"></p>
+                            <div class="d-flex flex-wrap gap-3">
+                                <button class="btn btn-brawl" type="submit">Create brawler</button>
+                                <button class="btn btn-brawl btn-brawl-blue" id="reset-form" type="button">Reset form</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <aside class="col-lg-5 creator-preview" aria-labelledby="preview-title">
+                        <h2 class="section-title" id="preview-title">Live preview</h2>
+                        <p class="text-body-secondary">This is a draft. Create your brawler once every rule is satisfied.</p>
+                        <div id="brawler-preview"></div>
+                    </aside>
+                </div>
+
+                <section class="mt-5" id="created-brawler" aria-labelledby="created-title" hidden>
+                    <h2 class="section-title" id="created-title" tabindex="-1">Brawler created!</h2>
+                    <p>Your final card is ready. The form has been reset so you can create another brawler.</p>
+                    <div class="creator-result" id="brawler-result"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><h3 class="mb-0">This is the end of the page</h3></div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test your Brawl Stars knowledge with a brawler quiz and one 50/50 hint per game.">
+    <title>Brawl Stars | Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="quiz.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md sticky-top site-nav">
+        <div class="container">
+            <a class="navbar-brand brand" href="index.html">
+                <i class="bi bi-star-fill" aria-hidden="true"></i> Brawl Stars
+            </a>
+            <button class="navbar-toggler" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="brawlers.html">Brawlers</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="quiz.html">Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="players.html">Top Players</a></li>
+                    <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
+                    <li class="nav-item"><a class="btn btn-brawl btn-sm my-2 my-md-0" href="index.html#join">Join</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero hero-small">
+            <div class="container">
+                <p class="eyebrow">Put your knowledge to the test</p>
+                <h1 class="hero-title">Brawler Quiz</h1>
+                <p class="lead mb-0">Know your brawlers? Pick the right answers and aim for a perfect score.</p>
+                <ul class="hero-stats">
+                    <li><i class="bi bi-question-circle" aria-hidden="true"></i> <span id="question-count">5</span> questions</li>
+                    <li><i class="bi bi-trophy-fill" aria-hidden="true"></i> <span id="points-per-answer">1</span> point per correct answer</li>
+                    <li><i class="bi bi-lightning-fill" aria-hidden="true"></i> One 50/50 hint</li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="section" aria-label="Brawler quiz game">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <p class="text-warning fw-bold" id="move-message" role="status" aria-live="polite" aria-atomic="true"></p>
+                        <div class="panel" id="quiz-game">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                                <p class="eyebrow mb-0">Question <span id="question-number">1</span> / <span id="question-total">5</span></p>
+                                <p class="mb-0 fw-bold"><i class="bi bi-star-fill text-warning" aria-hidden="true"></i> Score: <span id="score">0</span></p>
+                            </div>
+
+                            <p class="small text-body-secondary" id="game-status" role="status"></p>
+
+                            <h2 class="h3 mb-4" id="question-text" tabindex="-1">Which brawler summons Bruce the bear?</h2>
+
+                            <div class="row g-3" id="answers" role="group" aria-labelledby="question-text">
+                                <div class="col-sm-6">
+                                    <button class="quiz-answer" type="button" data-answer-index="0">
+                                        <span class="quiz-answer-letter" aria-hidden="true">A</span>
+                                        <span data-answer-text>Shelly</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="quiz-answer" type="button" data-answer-index="1">
+                                        <span class="quiz-answer-letter" aria-hidden="true">B</span>
+                                        <span data-answer-text>Nita</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="quiz-answer" type="button" data-answer-index="2">
+                                        <span class="quiz-answer-letter" aria-hidden="true">C</span>
+                                        <span data-answer-text>Colt</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="quiz-answer" type="button" data-answer-index="3">
+                                        <span class="quiz-answer-letter" aria-hidden="true">D</span>
+                                        <span data-answer-text>Poco</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Announce feedback without moving focus away from the chosen answer. -->
+                            <p class="quiz-feedback fw-bold mt-3 mb-0" id="answer-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 border-top pt-4 mt-3">
+                                <div>
+                                    <button class="btn btn-brawl btn-brawl-blue" id="hint-button" type="button" aria-describedby="hint-status">
+                                        <i class="bi bi-lightning-fill" aria-hidden="true"></i> Use 50/50
+                                    </button>
+                                    <p class="small text-body-secondary mt-2 mb-0" id="hint-status" role="status">1 hint available for this game</p>
+                                </div>
+                                <button class="btn btn-brawl" id="next-button" type="button">
+                                    Next question <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Swap the game and results panels with the hidden property. -->
+                        <div class="panel text-center" id="quiz-results" aria-labelledby="results-title" hidden>
+                            <i class="bi bi-trophy-fill display-3 text-warning" aria-hidden="true"></i>
+                            <p class="eyebrow mt-3">Quiz complete</p>
+                            <h2 class="section-title" id="results-title" tabindex="-1">Your results</h2>
+                            <p class="display-4 fw-bold mb-2"><span id="final-score">0</span> / <span id="final-total">5</span></p>
+                            <p class="text-body-secondary mb-4" id="results-message">Each correct answer earns one point.</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-3">
+                                <button class="btn btn-brawl" id="restart-button" type="button">
+                                    <i class="bi bi-arrow-clockwise" aria-hidden="true"></i> Play again
+                                </button>
+                                <a class="btn btn-brawl btn-brawl-blue" href="brawlers.html">Meet the brawlers</a>
+                            </div>
+                        </div>
+
+                        <aside class="mt-4" aria-labelledby="rules-title">
+                            <h2 class="h5" id="rules-title">How to play</h2>
+                            <p class="text-body-secondary mb-0">Choose one answer per question, then select Next. The 50/50 hint highlights two choices, including the correct answer. You get one hint per game. Score at least <span id="passing-score">3</span> points to pass, or answer every question correctly for a perfect score.</p>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <h3 class="mb-0">This is the end of the page</h3>
+        </div>
+    </footer>
+
+</body>
+</html>

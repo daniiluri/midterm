@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore top Brawl Stars players, search their profiles, and follow your favorites.">
+    <title>Top Players | Brawl Stars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="players.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md sticky-top site-nav" aria-label="Main navigation">
+        <div class="container" id="players-nav"></div>
+    </nav>
+
+    <main>
+        <header class="hero hero-small">
+            <div class="container" id="players-header"></div>
+        </header>
+
+        <section class="section" aria-label="Top players">
+            <div class="container">
+                <div class="panel mb-4" id="players-controls"></div>
+
+                <div class="mb-4" id="players-summary" role="status"></div>
+
+                <div class="mb-3 text-warning fw-bold" id="players-message" role="status"></div>
+
+                <div id="players-empty-state" role="status"></div>
+
+                <div class="table-responsive panel p-0" id="players-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container" id="players-footer"></div>
+    </footer>
+</body>
+</html>
