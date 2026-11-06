@@ -1,217 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-bs-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl Stars</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-md sticky-top site-nav">
-        <div class="container">
-            <a class="navbar-brand brand" href="index.html">
-                <i class="bi bi-star-fill"></i> Brawl Stars
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="brawlers.html">Brawlers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="players.html">Top Players</a></li>
-                    <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
-                    <li class="nav-item"><a class="btn btn-brawl btn-sm my-2 my-md-0" href="index.html#join">Join</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <!-- Page header -->
-        <header class="hero hero-small">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Brawl Club | Brawlers</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js" defer></script>
+        <script src="js/site.js" defer></script>
+        <script src="js/brawlers.js" defer></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg sticky-top site-nav" aria-label="Main navigation">
             <div class="container">
-                <p class="eyebrow">Choose your Heoro</p>
-                <h1 class="hero-title">Brawlers</h1>
-                <p class="lead mb-0">Every brawler has a main attack and a Super. Find the one that fits how you play.</p>
-            </div>
-        </header>
-
-        <!-- Brawler cards -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Starter picks</h2>
-                <div class="row g-4">
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-starting">
-                            <span class="brawler-avatar">S</span>
-                            <span class="rarity-tag">Starting</span>
-                            <h3 class="h5">Shelly</h3>
-                            <p class="mb-0">Her shotgun hits hardest up close, and her Super blasts through walls and bushes.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-rare">
-                            <span class="brawler-avatar">C</span>
-                            <span class="rarity-tag">Rare</span>
-                            <h3 class="h5">Colt</h3>
-                            <p class="mb-0">A sharpshooter who fires a long line of bullets. Deadly if every shot lands.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-rare">
-                            <span class="brawler-avatar">B</span>
-                            <span class="rarity-tag">Rare</span>
-                            <h3 class="h5">Bull</h3>
-                            <p class="mb-0">A tank with lots of health. His Super charges forward and knocks enemies around.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-rare">
-                            <span class="brawler-avatar">N</span>
-                            <span class="rarity-tag">Rare</span>
-                            <h3 class="h5">Nita</h3>
-                            <p class="mb-0">Sends out shockwaves and summons Bruce, her bear, to fight by her side.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-rare">
-                            <span class="brawler-avatar">P</span>
-                            <span class="rarity-tag">Rare</span>
-                            <h3 class="h5">Poco</h3>
-                            <p class="mb-0">Strums wide sound waves that hit several enemies, and his Super heals the whole team.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-epic">
-                            <span class="brawler-avatar">P</span>
-                            <span class="rarity-tag">Epic</span>
-                            <h3 class="h5">Piper</h3>
-                            <p class="mb-0">A sniper whose shots hit harder the farther they fly. Her Super jumps away and drops grenades.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-legendary">
-                            <span class="brawler-avatar">S</span>
-                            <span class="rarity-tag">Legendary</span>
-                            <h3 class="h5">Spike</h3>
-                            <p class="mb-0">Throws cactus grenades that burst into spikes. His Super slows enemies in an area.</p>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <article class="brawler-card rarity-legendary">
-                            <span class="brawler-avatar">C</span>
-                            <span class="rarity-tag">Legendary</span>
-                            <h3 class="h5">Crow</h3>
-                            <p class="mb-0">Poisons enemies with his daggers and leaps across the map with his Super.</p>
-                        </article>
-                    </div>
+                <a class="navbar-brand brand" href="index.html"
+                    ><span class="brand-mark" aria-hidden="true">★</span> Brawl Club</a
+                ><button
+                    class="navbar-toggler"
+                    type="button"
+                    aria-controls="mainNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="brawlers.html">Brawlers</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="players.html">Top Players</a></li>
+                        <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
+                        <li class="nav-item">
+                            <a class="btn btn-brawl btn-sm my-2 my-lg-0" href="index.html#join"
+                                >Join the club ↗</a
+                            >
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </nav>
 
-        <!-- Comparison table -->
-        <section class="section section-alt">
-            <div class="container">
-                <h2 class="section-title">Compare brawlers</h2>
-                <div class="table-responsive panel p-0">
-                    <table class="table table-hover align-middle mb-0 brawler-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Brawler</th>
-                                <th scope="col">Rarity</th>
-                                <th scope="col">Class</th>
-                                <th scope="col">Range</th>
-                                <th scope="col" class="d-none d-md-table-cell">Good in</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Shelly</th>
-                                <td>Starting</td>
-                                <td>Damage Dealer</td>
-                                <td>Short</td>
-                                <td class="d-none d-md-table-cell">Showdown</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Colt</th>
-                                <td>Rare</td>
-                                <td>Damage Dealer</td>
-                                <td>Long</td>
-                                <td class="d-none d-md-table-cell">Heist</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Bull</th>
-                                <td>Rare</td>
-                                <td>Tank</td>
-                                <td>Short</td>
-                                <td class="d-none d-md-table-cell">Showdown</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Nita</th>
-                                <td>Rare</td>
-                                <td>Damage Dealer</td>
-                                <td>Medium</td>
-                                <td class="d-none d-md-table-cell">Gem Grab</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Poco</th>
-                                <td>Rare</td>
-                                <td>Support</td>
-                                <td>Medium</td>
-                                <td class="d-none d-md-table-cell">Brawl Ball</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Piper</th>
-                                <td>Epic</td>
-                                <td>Marksman</td>
-                                <td>Long</td>
-                                <td class="d-none d-md-table-cell">Bounty</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Spike</th>
-                                <td>Legendary</td>
-                                <td>Damage Dealer</td>
-                                <td>Long</td>
-                                <td class="d-none d-md-table-cell">Knockout</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Crow</th>
-                                <td>Legendary</td>
-                                <td>Assassin</td>
-                                <td>Medium</td>
-                                <td class="d-none d-md-table-cell">Showdown</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <main id="main" tabindex="-1">
+            <!-- Page header -->
+            <header class="hero hero-small">
+                <div class="container">
+                    <p class="eyebrow">Find your play style</p>
+                    <h1 class="hero-title">Brawlers</h1>
+                    <p class="lead mb-0">
+                        Every brawler has a main attack and a Super. Find the one that fits how you play.
+                    </p>
+                </div>
+            </header>
+
+            <section class="section">
+                <div class="container">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Eight ways to play</p>
+                            <h2 class="section-title">Meet your main.</h2>
+                        </div>
+                        <p class="text-body-secondary">
+                            A curated starter roster. Find a style that feels like you.
+                        </p>
+                    </div>
+                    <div class="panel mb-4">
+                        <div class="row g-3">
+                            <div class="col-lg-4">
+                                <label class="form-label" for="brawler-search">Search the roster</label
+                                ><input
+                                    class="form-control"
+                                    id="brawler-search"
+                                    type="search"
+                                    placeholder="Name or game mode"
+                                />
+                            </div>
+                            <div class="col-sm-4 col-lg-3">
+                                <label class="form-label" for="rarity-filter">Rarity</label
+                                ><select class="form-select" id="rarity-filter">
+                                    <option value="all">All rarities</option>
+                                    <option value="starting">Starting</option>
+                                    <option value="rare">Rare</option>
+                                    <option value="epic">Epic</option>
+                                    <option value="legendary">Legendary</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 col-lg-3">
+                                <label class="form-label" for="class-filter">Class</label
+                                ><select class="form-select" id="class-filter">
+                                    <option value="all">All classes</option>
+                                    <option>Damage Dealer</option>
+                                    <option>Tank</option>
+                                    <option>Support</option>
+                                    <option>Marksman</option>
+                                    <option>Assassin</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 col-lg-2 d-flex align-items-end">
+                                <button
+                                    class="btn btn-brawl btn-brawl-blue w-100"
+                                    id="clear-filters"
+                                    type="button"
+                                >
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="result-count" id="roster-count" role="status"></p>
+                    <div class="empty-state" id="roster-empty" role="status" hidden>
+                        <span aria-hidden="true">⌕</span>
+                        <h3>No brawlers found</h3>
+                        <p>Try another name, class, or rarity. Reset clears all three filters.</p>
+                    </div>
+                    <div class="roster-grid" id="brawler-grid"></div>
+                </div>
+            </section>
+            <section class="section text-center">
+                <div class="container">
+                    <h2 class="section-title">Found your main?</h2>
+                    <p>Put your knowledge to the test, or invent a new play style.</p>
+                    <a href="quiz.html" class="btn btn-brawl btn-lg">Take the quiz ↗</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <a class="brand" href="index.html">★ Brawl Club</a>
+                    <p class="mb-0 mt-2">Learn the roster. Find your style. Make your next play.</p>
+       
+                </div>
+                <div class="d-flex flex-wrap gap-4">
+                    <a href="index.html#credits">Credits</a>
+                    <a class="back-top" href="#main">Back to top ↑</a>
                 </div>
             </div>
-        </section>
-
-        <section class="section text-center">
-            <div class="container">
-                <h2 class="section-title">Found your main?</h2>
-                <p>Sign up for event news and jump into your first match.</p>
-                <a href="index.html#join" class="btn btn-brawl btn-lg">Join the club</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <h3 class="mb-0">This is the end of the page</h3    >
-        </div>
-    </footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        </footer>
+    </body>
 </html>

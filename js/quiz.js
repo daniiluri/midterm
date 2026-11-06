@@ -1,39 +1,33 @@
-const INITIAL_SCORE = 0;
 const POINTS_PER_CORRECT_ANSWER = 1;
 const HINTS_PER_GAME = 1;
-const HINTS_PER_USE = 1;
 const PASSING_SCORE = 3;
-const FIRST_INDEX = 0;
-const INDEX_STEP = 1;
-const EMPTY_COUNT = 0;
-const QUESTIONS_PER_DRAW = 1;
 
 const questions = [
     {
         question: "Which brawler summons Bruce the bear?",
         options: ["Nita", "Colt", "Shelly", "Poco"],
-        correctIndex: 0
+        correctIndex: 0,
     },
     {
         question: "Which brawler attacks with a shotgun?",
         options: ["Colt", "Shelly", "Poco", "Nita"],
-        correctIndex: 1
+        correctIndex: 1,
     },
     {
         question: "Which brawler's Super charges forward and knocks enemies around?",
         options: ["Nita", "Colt", "Poco", "Bull"],
-        correctIndex: 3
+        correctIndex: 3,
     },
     {
         question: "Which brawler can heal teammates with his Super?",
         options: ["Bull", "Shelly", "Poco", "Colt"],
-        correctIndex: 2
+        correctIndex: 2,
     },
     {
         question: "Which brawler throws cactus grenades?",
         options: ["Shelly", "Spike", "Nita", "Bull"],
-        correctIndex: 1
-    }
+        correctIndex: 1,
+    },
 ];
 
 const TOTAL_QUESTIONS = questions.length;
@@ -58,7 +52,7 @@ const resultsMessageElement = document.getElementById("results-message");
 
 let remainingQuestions = [...questions];
 let currentQuestion;
-let score = INITIAL_SCORE;
+let score = 0;
 let hintsRemaining = HINTS_PER_GAME;
 let hasAnswered = false;
 let gameFinished = false;
@@ -70,22 +64,26 @@ document.getElementById("points-per-answer").textContent = POINTS_PER_CORRECT_AN
 document.getElementById("passing-score").textContent = PASSING_SCORE;
 
 function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + INDEX_STEP)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function renderState() {
     scoreElement.textContent = score;
     finalScoreElement.textContent = score;
     questionNumberElement.textContent = TOTAL_QUESTIONS - remainingQuestions.length;
-    hintStatusElement.textContent = hintsRemaining === EMPTY_COUNT
-        ? "No hints remaining for this game"
-        : `${hintsRemaining} hint available for this game`;
+    document.getElementById("quiz-progress").value = gameFinished
+        ? TOTAL_QUESTIONS
+        : TOTAL_QUESTIONS - remainingQuestions.length - 1;
+    hintStatusElement.textContent =
+        hintsRemaining === 0
+            ? "No hints remaining for this game"
+            : `${hintsRemaining} hint available for this game`;
     gameStatusElement.textContent = hasAnswered
         ? "Answer locked. Select Next to continue."
         : "Choose one answer. Your choice is final.";
-    nextButton.textContent = remainingQuestions.length === EMPTY_COUNT ? "See results" : "Next question";
+    nextButton.textContent = remainingQuestions.length === 0 ? "See results" : "Next question";
     nextButton.disabled = gameFinished;
-    hintButton.disabled = gameFinished;
+    hintButton.disabled = gameFinished || hasAnswered || hintsRemaining === 0;
     gamePanel.hidden = gameFinished;
     resultsPanel.hidden = !gameFinished;
 }
@@ -99,27 +97,30 @@ function finishGame() {
 
     if (score === MAX_SCORE) {
         resultsTitleElement.textContent = "Perfect score!";
-        resultsMessageElement.textContent = "You answered every question correctly. You're a Brawl Stars expert!";
+        resultsMessageElement.textContent =
+            "You answered every question correctly. You're a Brawl Stars expert!";
     } else if (score >= PASSING_SCORE && score < MAX_SCORE) {
         resultsTitleElement.textContent = "Quiz passed!";
-        resultsMessageElement.textContent = "Well done! You know your brawlers. Try again for a perfect score.";
+        resultsMessageElement.textContent =
+            "Well done! You know your brawlers. Try again for a perfect score.";
     } else {
         resultsTitleElement.textContent = "Keep practicing!";
         resultsMessageElement.textContent = `You need at least ${PASSING_SCORE} points to pass. Meet the brawlers and try again!`;
     }
 
     renderState();
+    Site.fadeIn(resultsPanel);
     resultsTitleElement.focus();
 }
 
 function showNextQuestion() {
-    if (remainingQuestions.length === EMPTY_COUNT) {
+    if (remainingQuestions.length === 0) {
         finishGame();
         return;
     }
 
-    const randomIndex = randomInteger(FIRST_INDEX, remainingQuestions.length - INDEX_STEP);
-    currentQuestion = remainingQuestions.splice(randomIndex, QUESTIONS_PER_DRAW)[FIRST_INDEX];
+    const randomIndex = randomInteger(0, remainingQuestions.length - 1);
+    currentQuestion = remainingQuestions.splice(randomIndex, 1)[0];
     hasAnswered = false;
     questionElement.textContent = currentQuestion.question;
     feedbackElement.textContent = "";
@@ -136,13 +137,19 @@ function showNextQuestion() {
 
 function answerQuestion(selectedIndex) {
     if (gameFinished || hasAnswered) {
-        rejectMove(gameFinished
-            ? "The quiz is finished. Select Play again to start a new game."
-            : "You already answered this question. Select Next to continue.");
+        rejectMove(
+            gameFinished
+                ? "The quiz is finished. Select Play again to start a new game."
+                : "You already answered this question. Select Next to continue.",
+        );
         return;
     }
 
-    if (!Number.isInteger(selectedIndex) || selectedIndex < FIRST_INDEX || selectedIndex >= currentQuestion.options.length) {
+    if (
+        !Number.isInteger(selectedIndex) ||
+        selectedIndex < 0 ||
+        selectedIndex >= currentQuestion.options.length
+    ) {
         rejectMove("Choose one of the available answer buttons.");
         return;
     }
@@ -170,9 +177,11 @@ function answerQuestion(selectedIndex) {
 
 function nextQuestion() {
     if (gameFinished || !hasAnswered) {
-        rejectMove(gameFinished
-            ? "The quiz is finished. Select Play again to start a new game."
-            : "Choose an answer before moving to the next question.");
+        rejectMove(
+            gameFinished
+                ? "The quiz is finished. Select Play again to start a new game."
+                : "Choose an answer before moving to the next question.",
+        );
         return;
     }
 
@@ -187,10 +196,12 @@ function useHint() {
         return;
     }
 
-    if (hasAnswered || hintsRemaining === EMPTY_COUNT) {
-        rejectMove(hasAnswered
-            ? "Use the hint before answering the question."
-            : "You have already used your hint for this game.");
+    if (hasAnswered || hintsRemaining === 0) {
+        rejectMove(
+            hasAnswered
+                ? "Use the hint before answering the question."
+                : "You have already used your hint for this game.",
+        );
         return;
     }
 
@@ -199,18 +210,21 @@ function useHint() {
         return Number(button.dataset.answerIndex) !== currentQuestion.correctIndex;
     });
 
-    const randomIndex = randomInteger(FIRST_INDEX, wrongButtons.length - INDEX_STEP);
+    const randomIndex = randomInteger(0, wrongButtons.length - 1);
     const randomWrongButton = wrongButtons[randomIndex];
     correctButton.classList.add("is-hint");
     randomWrongButton.classList.add("is-hint");
-    hintsRemaining -= HINTS_PER_USE;
+    for (const button of wrongButtons) {
+        if (button !== randomWrongButton) button.disabled = true;
+    }
+    hintsRemaining -= 1;
     moveMessageElement.textContent = "";
     renderState();
 }
 
 function restartGame() {
     remainingQuestions = [...questions];
-    score = INITIAL_SCORE;
+    score = 0;
     hintsRemaining = HINTS_PER_GAME;
     gameFinished = false;
     showNextQuestion();
@@ -227,14 +241,5 @@ answerButtons.forEach((button) => {
 nextButton.addEventListener("click", nextQuestion);
 hintButton.addEventListener("click", useHint);
 restartButton.addEventListener("click", restartGame);
-
-const navigationToggle = document.querySelector(".navbar-toggler");
-const navigationMenu = document.getElementById("mainNav");
-
-navigationToggle.addEventListener("click", () => {
-    const expanded = navigationToggle.getAttribute("aria-expanded") === "true";
-    navigationToggle.setAttribute("aria-expanded", String(!expanded));
-    navigationMenu.classList.toggle("show", !expanded);
-});
 
 showNextQuestion();

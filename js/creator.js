@@ -8,7 +8,7 @@ const SKILLS = { attack: "Attack", defense: "Defense", speed: "Speed", healing: 
 const CLASSES = {
     damage: { label: "Damage Dealer", skill: "attack" },
     tank: { label: "Tank", skill: "defense" },
-    support: { label: "Support", skill: "healing" }
+    support: { label: "Support", skill: "healing" },
 };
 
 const form = document.getElementById("brawler-form");
@@ -32,7 +32,7 @@ function readBrawler() {
     const brawler = {
         name: nameField.value.trim(),
         classId: classField.value,
-        color: colorField.value
+        color: colorField.value,
     };
 
     for (const field of skillFields) {
@@ -86,9 +86,10 @@ function updatePreview() {
     let total = 0;
     for (const value of values) total += value;
     const remaining = TOTAL_POINTS - total;
-    pointsCounter.textContent = remaining >= 0
-        ? `${total} / ${TOTAL_POINTS} points used · ${remaining} points remaining`
-        : `${total} / ${TOTAL_POINTS} points used · ${Math.abs(remaining)} points over budget`;
+    pointsCounter.textContent =
+        remaining >= 0
+            ? `${total} / ${TOTAL_POINTS} points used · ${remaining} points remaining`
+            : `${total} / ${TOTAL_POINTS} points used · ${Math.abs(remaining)} points over budget`;
 }
 
 function validate() {
@@ -106,7 +107,10 @@ function validate() {
 
     if (!errors[nameField.id]) {
         if (brawler.name.length < MIN_NAME_LENGTH || brawler.name.length > MAX_NAME_LENGTH) {
-            addError(nameField, `Use ${MIN_NAME_LENGTH}–${MAX_NAME_LENGTH} characters, excluding surrounding spaces.`);
+            addError(
+                nameField,
+                `Use ${MIN_NAME_LENGTH}–${MAX_NAME_LENGTH} characters, excluding surrounding spaces.`,
+            );
         }
         if (TAKEN_NAMES.some((name) => name.toLowerCase() === brawler.name.toLowerCase())) {
             addError(nameField, "That name is already taken. Choose another brawler name.");
@@ -123,7 +127,10 @@ function validate() {
     if (selectedClass) {
         const mainSkill = document.getElementById(selectedClass.skill);
         if (mainSkill.validity.valid && brawler[selectedClass.skill] < MIN_CLASS_SKILL) {
-            addError(mainSkill, `${selectedClass.label} requires ${SKILLS[selectedClass.skill]} of at least ${MIN_CLASS_SKILL}.`);
+            addError(
+                mainSkill,
+                `${selectedClass.label} requires ${SKILLS[selectedClass.skill]} of at least ${MIN_CLASS_SKILL}.`,
+            );
         }
     }
 
@@ -133,14 +140,21 @@ function validate() {
 
         if (total !== TOTAL_POINTS) {
             for (const field of skillFields) {
-                addError(field, `Use exactly ${TOTAL_POINTS} points across all skills. Your total is ${total}.`);
+                addError(
+                    field,
+                    `Use exactly ${TOTAL_POINTS} points across all skills. Your total is ${total}.`,
+                );
             }
         }
     }
 
     const attackField = document.getElementById("attack");
     const healingField = document.getElementById("healing");
-    if (attackField.validity.valid && healingField.validity.valid && brawler.attack + brawler.healing > MAX_ATTACK_AND_HEALING) {
+    if (
+        attackField.validity.valid &&
+        healingField.validity.valid &&
+        brawler.attack + brawler.healing > MAX_ATTACK_AND_HEALING
+    ) {
         const message = `Attack and Healing combined cannot exceed ${MAX_ATTACK_AND_HEALING}.`;
         addError(attackField, message);
         addError(healingField, message);
@@ -162,9 +176,10 @@ function updateValidation() {
 
     const errorCount = Object.keys(errors).length;
     errorSummary.hidden = !submitted || errorCount === 0;
-    errorSummary.textContent = submitted && errorCount > 0
-        ? `Please correct ${errorCount} ${errorCount === 1 ? "field" : "fields"} before creating your brawler.`
-        : "";
+    errorSummary.textContent =
+        submitted && errorCount > 0
+            ? `Please correct ${errorCount} ${errorCount === 1 ? "field" : "fields"} before creating your brawler.`
+            : "";
     return errors;
 }
 
@@ -214,6 +229,7 @@ form.addEventListener("submit", (event) => {
     const brawler = readBrawler();
     result.replaceChildren(buildCard(brawler));
     resultSection.hidden = false;
+    Site.fadeIn(resultSection);
     resultTitle.focus();
     TAKEN_NAMES.push(brawler.name);
     resetForm();
@@ -222,14 +238,6 @@ form.addEventListener("submit", (event) => {
 document.getElementById("reset-form").addEventListener("click", () => {
     resetForm();
     nameField.focus();
-});
-
-const navigationToggle = document.querySelector(".navbar-toggler");
-const navigationMenu = document.getElementById("mainNav");
-navigationToggle.addEventListener("click", () => {
-    const expanded = navigationToggle.getAttribute("aria-expanded") === "true";
-    navigationToggle.setAttribute("aria-expanded", String(!expanded));
-    navigationMenu.classList.toggle("show", !expanded);
 });
 
 updatePreview();
