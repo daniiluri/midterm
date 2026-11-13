@@ -1,5 +1,36 @@
-// Shared navigation and the three jQuery effects: sliding, fading, and scrolling.
 const Site = {
+    keys: {
+        theme: "brawl-club-theme",
+        users: "brawl-club-users",
+        session: "brawl-club-session",
+        favorites: "brawl-club-favorites",
+    },
+    readJson(key, fallback) {
+        const value = localStorage.getItem(key);
+        return value === null ? fallback : JSON.parse(value);
+    },
+    saveJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    },
+    getUsers() {
+        return this.readJson(this.keys.users, []);
+    },
+    getSession() {
+        return this.readJson(this.keys.session, null);
+    },
+    getFavorites() {
+        return this.readJson(this.keys.favorites, []);
+    },
+    setFavorites(items) {
+        this.saveJson(this.keys.favorites, items);
+        this.updateSavedCount();
+    },
+    updateSavedCount() {
+        const count = this.getFavorites().length;
+        for (const badge of document.querySelectorAll("[data-saved-count]")) {
+            badge.textContent = count;
+        }
+    },
     duration: () => (matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 220),
     fadeIn(element) {
         element.hidden = false;
@@ -9,6 +40,82 @@ const Site = {
 
 const navigationToggle = document.querySelector(".navbar-toggler");
 const navigationMenu = document.getElementById("mainNav");
+const navigationList = navigationMenu.querySelector(".navbar-nav");
+const joinLink = navigationList.querySelector('a[href="index.html#join"]');
+const activePage = location.pathname.split("/").pop() || "index.html";
+
+function addNavigationItem(element) {
+    const item = document.createElement("li");
+    item.className = "nav-item";
+    item.append(element);
+    joinLink.parentElement.before(item);
+    return element;
+}
+
+function addNavigationLink(label, href, className = "nav-link") {
+    const link = document.createElement("a");
+    link.className = className;
+    link.href = href;
+    link.textContent = label;
+    if (activePage === href) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+    }
+    return addNavigationItem(link);
+}
+
+const favoritesLink = addNavigationLink("My picks", "favorites.html");
+const savedCount = document.createElement("span");
+savedCount.className = "saved-count";
+savedCount.dataset.savedCount = "";
+savedCount.setAttribute("aria-label", "saved brawlers");
+favoritesLink.append(" ", savedCount);
+Site.updateSavedCount();
+
+const session = Site.getSession();
+if (session) {
+    const logout = document.createElement("button");
+    logout.type = "button";
+    logout.className = "nav-link nav-button";
+    logout.textContent = "Log out";
+    addNavigationItem(logout);
+    logout.addEventListener("click", () => {
+        localStorage.removeItem(Site.keys.session);
+        location.href = "index.html";
+    });
+    joinLink.textContent = "My profile ↗";
+    joinLink.href = "profile.html";
+    if (activePage === "profile.html") {
+        joinLink.classList.add("active");
+        joinLink.setAttribute("aria-current", "page");
+    }
+} else {
+    addNavigationLink("Log in", "login.html");
+    joinLink.textContent = "Sign up ↗";
+}
+
+const themeButton = document.createElement("button");
+themeButton.type = "button";
+themeButton.className = "theme-toggle";
+themeButton.dataset.themeToggle = "";
+themeButton.setAttribute("role", "switch");
+themeButton.setAttribute("aria-label", "Light mode");
+addNavigationItem(themeButton);
+
+function updateThemeButton() {
+    const isLight = document.documentElement.dataset.bsTheme === "light";
+    themeButton.innerHTML = `<i class="bi bi-${isLight ? "sun-fill" : "moon-stars-fill"}" aria-hidden="true"></i><span>Light mode</span>`;
+    themeButton.title = `Switch to ${isLight ? "dark" : "light"} mode`;
+    themeButton.setAttribute("aria-checked", String(isLight));
+}
+updateThemeButton();
+themeButton.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.bsTheme === "light" ? "dark" : "light";
+    document.documentElement.dataset.bsTheme = nextTheme;
+    Site.saveJson(Site.keys.theme, nextTheme);
+    updateThemeButton();
+});
+
 function closeNavigation() {
     navigationToggle.setAttribute("aria-expanded", "false");
     navigationMenu.classList.remove("show");
@@ -22,6 +129,14 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && navigationToggle.getAttribute("aria-expanded") === "true") {
         closeNavigation();
         navigationToggle.focus();
+    }
+});
+
+window.addEventListener("storage", (event) => {
+    if (event.key === Site.keys.favorites) Site.updateSavedCount();
+    if (event.key === Site.keys.theme) {
+        document.documentElement.dataset.bsTheme = Site.readJson(Site.keys.theme, "dark");
+        updateThemeButton();
     }
 });
 

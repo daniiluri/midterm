@@ -14,6 +14,12 @@ function validationMessage(field) {
     if (field.id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
         return "Enter an email like player@example.com.";
     }
+    if (field.id === "email" && Site.getUsers().some((user) => user.email === value.toLowerCase())) {
+        return "This email already has a demo account. Log in instead.";
+    }
+    if (field.id === "demo-password" && value.length < 6) {
+        return "Use at least 6 characters for your demo password.";
+    }
     if (
         field.id === "trophies" &&
         (!Number.isInteger(field.valueAsNumber) || field.valueAsNumber < 0 || field.valueAsNumber > 200000)
@@ -55,10 +61,18 @@ form.addEventListener("submit", (event) => {
         invalidField.focus();
         return;
     }
-    success.textContent = `Welcome, ${form.elements.player.value.trim()}! Your ${form.elements.style.value.toLowerCase()} profile is ready for ${form.elements.mode.value}. This demo profile lasts for this page visit; no email was sent.`;
-    form.reset();
-    touched.clear();
-    for (const field of fields) showError(field);
-    Site.fadeIn(success);
-    success.focus();
+    const user = {
+        player: form.elements.player.value.trim(),
+        email: form.elements.email.value.trim().toLowerCase(),
+        mode: form.elements.mode.value,
+        trophies: Number(form.elements.trophies.value),
+        style: form.elements.style.value,
+        demoPassword: form.elements.demoPassword.value,
+    };
+    Site.saveJson(Site.keys.users, [...Site.getUsers(), user]);
+    Site.saveJson(Site.keys.session, {
+        email: user.email,
+        notice: `Account created successfully. Welcome to the club, ${user.player}!`,
+    });
+    location.href = "profile.html";
 });

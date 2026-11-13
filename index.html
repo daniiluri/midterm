@@ -11,7 +11,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap"
             rel="stylesheet"
         />
         <link
@@ -22,6 +22,7 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
             rel="stylesheet"
         />
+        <script src="js/theme-init.js"></script>
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://code.jquery.com/jquery-4.0.0.min.js" defer></script>
         <script src="js/site.js" defer></script>
@@ -30,7 +31,7 @@
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg sticky-top site-nav" aria-label="Main navigation">
+        <nav class="navbar navbar-expand-xl sticky-top site-nav" aria-label="Main navigation">
             <div class="container">
                 <a class="navbar-brand brand" href="index.html"
                     ><span class="brand-mark" aria-hidden="true">★</span> Brawl Club</a
@@ -44,7 +45,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <ul class="navbar-nav ms-auto align-items-xl-center gap-xl-1">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
@@ -86,8 +87,22 @@
                             <li><i class="bi bi-tag-fill"></i> Free to play</li>
                         </ul>
                     </div>
-                    <div class="hero-emblem" aria-hidden="true">
-                        <i class="bi bi-star-fill"></i>
+                    <div
+                        class="hero-showcase"
+                        aria-label="Shelly, Spike and Crow brawler portraits"
+                        role="img"
+                    >
+                        <span class="showcase-burst" aria-hidden="true">★</span>
+                        <div class="showcase-card showcase-card-one">
+                            <img src="assets/icons/brawlers/shelly.png" alt="" />
+                        </div>
+                        <div class="showcase-card showcase-card-two">
+                            <img src="assets/icons/brawlers/spike.png" alt="" />
+                        </div>
+                        <div class="showcase-card showcase-card-three">
+                            <img src="assets/icons/brawlers/crow.png" alt="" />
+                        </div>
+                        <span class="showcase-label" aria-hidden="true">PICK YOUR MAIN!</span>
                     </div>
                 </div>
             </header>
@@ -196,6 +211,30 @@
                 </div>
             </section>
 
+            <section class="section arena-section" aria-labelledby="arena-title">
+                <div class="container">
+                    <figure class="arena-banner">
+                        <img
+                            class="arena-art"
+                            src="assets/images/arena-fan-art.webp"
+                            alt="Fan illustration of Shelly and Spike beside a glowing gem mine in a sunny desert arena."
+                            width="2172"
+                            height="724"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <figcaption class="arena-caption">
+                            <div>
+                                <p class="eyebrow">The arena is calling</p>
+                                <h2 id="arena-title" class="section-title">Ready. Set. Brawl.</h2>
+                                <p>Every great play starts with a brawler that feels like you.</p>
+                            </div>
+                            <a class="btn btn-brawl" href="brawlers.html">Find your brawler ↗</a>
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+
             <!-- How to start -->
             <section class="section" id="start">
                 <div class="container">
@@ -229,9 +268,8 @@
                             <p class="eyebrow">Join the club</p>
                             <h2 class="section-title">Find your club identity</h2>
                             <p>
-                                Create a club profile for this visit. Tell us how you play and get your
-                                personalized welcome. This is a demo: nothing is sent and no emails are
-                                delivered.
+                                Create a demo club profile that stays in this browser. Tell us how you play,
+                                save your favorite brawlers, and come back to your picks.
                             </p>
                         </div>
                         <div class="col-lg-7">
@@ -316,6 +354,27 @@
                                         <p class="field-error" id="play-style-error" aria-live="polite"></p>
                                     </div>
                                     <div class="col-12">
+                                        <label for="demo-password" class="form-label">Demo password</label
+                                        ><input
+                                            class="form-control"
+                                            type="password"
+                                            id="demo-password"
+                                            name="demoPassword"
+                                            autocomplete="new-password"
+                                            required
+                                            minlength="6"
+                                            aria-describedby="demo-password-help demo-password-error"
+                                        />
+                                        <p class="form-text" id="demo-password-help">
+                                            Stored only in this browser as a demo. Never use a real password.
+                                        </p>
+                                        <p
+                                            class="field-error"
+                                            id="demo-password-error"
+                                            aria-live="polite"
+                                        ></p>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-check">
                                             <input
                                                 class="form-check-input"
@@ -324,7 +383,8 @@
                                                 required
                                                 aria-describedby="agree-error"
                                             /><label class="form-check-label" for="agree"
-                                                >I understand this is a demo profile for this visit.</label
+                                                >I understand this is a browser-only demo and will not use a
+                                                real password.</label
                                             >
                                         </div>
                                         <p class="field-error" id="agree-error" aria-live="polite"></p>
@@ -333,6 +393,9 @@
                                         <button class="btn btn-brawl btn-lg w-100" type="submit">
                                             Create my profile ↗
                                         </button>
+                                        <p class="text-center mt-4 mb-0">
+                                            Already in the club? <a href="login.html">Log in</a>
+                                        </p>
                                     </div>
                                 </div>
                             </form>
@@ -422,8 +485,13 @@
                             <strong>Brawler portraits and game characters:</strong>
                             <a href="https://supercell.com/en/games/brawlstars/">Brawl Stars by Supercell</a>.
                             The eight roster portraits were downloaded from the
-                            <a href="https://github.com/Brawlify/CDN">Brawlify asset repository</a>.
-                            Its <a href="assets/icons/brawlers/LICENSE">license notice</a> is included.
+                            <a href="https://github.com/Brawlify/CDN">Brawlify asset repository</a>. Its
+                            <a href="assets/icons/brawlers/LICENSE">license notice</a> is included.
+                        </li>
+                        <li class="mb-3">
+                            <strong>Arena illustration:</strong>
+                            AI-generated fan artwork created with OpenAI image generation, inspired by Brawl
+                            Stars. <a href="assets/images/arena-fan-art-prompt.txt">Artwork prompt</a>.
                         </li>
                         <li class="mb-3">
                             <strong>Layout and components:</strong>
@@ -436,16 +504,19 @@
                         </li>
                         <li class="mb-3">
                             <strong>Animation library:</strong>
-                            <a href="https://jquery.com/">jQuery 4.0.0</a>, used for FAQ sliding,
-                            fading messages, and smooth scrolling.
+                            <a href="https://jquery.com/">jQuery 4.0.0</a>, used for FAQ sliding, fading
+                            messages, and smooth scrolling.
                         </li>
                         <li>
                             <strong>Fonts:</strong>
                             <a href="https://fonts.google.com/specimen/Lilita+One">Lilita One</a> and
-                            <a href="https://fonts.google.com/specimen/Nunito">Nunito</a>, served by Google Fonts.
+                            <a href="https://fonts.google.com/specimen/Nunito">Nunito</a>, served by Google
+                            Fonts.
                         </li>
                     </ul>
-                    <p class="mt-3 mb-0">This is an unofficial student fan project, not affiliated with Supercell.</p>
+                    <p class="mt-3 mb-0">
+                        This is an unofficial student fan project, not affiliated with Supercell.
+                    </p>
                 </div>
             </section>
         </main>

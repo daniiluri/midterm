@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Brawl Club | Profile</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+            rel="stylesheet"
+        />
+        <script src="js/theme-init.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js" defer></script>
+        <script src="js/site.js" defer></script>
+        <script src="js/profile.js" defer></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-xl sticky-top site-nav" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand brand" href="index.html"
+                    ><span class="brand-mark" aria-hidden="true">★</span> Brawl Club</a
+                ><button
+                    class="navbar-toggler"
+                    type="button"
+                    aria-controls="mainNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-xl-center gap-xl-1">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="brawlers.html">Brawlers</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="players.html">Top Players</a></li>
+                        <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
+                        <li class="nav-item">
+                            <a class="btn btn-brawl btn-sm my-2 my-lg-0" href="index.html#join"
+                                >Join the club ↗</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main id="main" tabindex="-1">
+            <header class="hero hero-small">
+                <div class="container">
+                    <p class="eyebrow">Your player hub</p>
+                    <h1 class="hero-title">Club profile.</h1>
+                    <p class="lead mb-0">A little personality. A lot of brawl.</p>
+                </div>
+            </header>
+            <section class="section">
+                <div class="container profile-layout" id="profile-content" hidden>
+                    <p
+                        class="success-message profile-success"
+                        id="profile-success"
+                        role="status"
+                        tabindex="-1"
+                        hidden
+                    ></p>
+                    <article class="panel player-pass">
+                        <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
+                        <span class="mode-tag">CLUB MEMBER</span>
+                        <h2 id="profile-name" class="section-title mt-3 mb-2"></h2>
+                        <p id="profile-style"></p>
+                        <div class="profile-trophies">
+                            <i class="bi bi-trophy-fill" aria-hidden="true"></i
+                            ><strong id="profile-trophies"></strong><span>trophies</span>
+                        </div>
+                    </article>
+                    <div>
+                        <div class="panel">
+                            <p class="eyebrow">Player details</p>
+                            <h2 class="h3 mb-4">Your club identity</h2>
+                            <dl class="profile-details">
+                                <dt>Email</dt>
+                                <dd id="profile-email"></dd>
+                                <dt>Favorite game mode</dt>
+                                <dd id="profile-mode"></dd>
+                                <dt>Play style</dt>
+                                <dd id="profile-play-style"></dd>
+                            </dl>
+                            <p class="demo-note mt-4 mb-0">
+                                Demo account • Saved in this browser only. Never use a real password.
+                            </p>
+                        </div>
+                        <a class="collection-link" href="favorites.html"
+                            ><span
+                                ><strong>Your brawler collection</strong
+                                ><small
+                                    ><span data-saved-count>0</span> saved picks, ready for your next
+                                    match</small
+                                ></span
+                            ><span aria-hidden="true">↗</span></a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <a class="brand" href="index.html">★ Brawl Club</a>
+                    <p class="mb-0 mt-2">Learn the roster. Find your style. Make your next play.</p>
+                </div>
+                <div class="d-flex flex-wrap gap-4">
+                    <a href="index.html#credits">Credits</a>
+                    <a class="back-top" href="#main">Back to top ↑</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

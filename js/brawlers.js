@@ -124,9 +124,31 @@ function renderBrawlers() {
             stats.append(term, detail);
         }
         card.append(art, tag, name, description, stats);
+        const saveButton = document.createElement("button");
+        const isSaved = Site.getFavorites().some((item) => item.name === brawler.name);
+        saveButton.type = "button";
+        saveButton.className = `btn btn-brawl btn-sm save-brawler${isSaved ? " is-saved" : ""}`;
+        saveButton.dataset.brawlerName = brawler.name;
+        saveButton.setAttribute("aria-pressed", String(isSaved));
+        saveButton.setAttribute("aria-label", `Save ${brawler.name}`);
+        saveButton.textContent = isSaved ? "★ Saved" : "☆ Save brawler";
+        card.append(saveButton);
         grid.append(card);
     }
 }
+grid.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-brawler-name]");
+    if (!button) return;
+    const brawler = brawlers.find((item) => item.name === button.dataset.brawlerName);
+    if (!brawler) throw new Error("Selected brawler is missing from the roster.");
+    const favorites = Site.getFavorites();
+    const isSaved = favorites.some((item) => item.name === brawler.name);
+    Site.setFavorites(
+        isSaved ? favorites.filter((item) => item.name !== brawler.name) : [...favorites, brawler],
+    );
+    renderBrawlers();
+    grid.querySelector(`button[data-brawler-name="${brawler.name}"]`)?.focus();
+});
 search.addEventListener("input", renderBrawlers);
 for (const filter of [rarity, role]) filter.addEventListener("change", renderBrawlers);
 document.getElementById("clear-filters").addEventListener("click", () => {
